@@ -43,8 +43,9 @@ fi
 # update PATH and LD_LIBRARY_PATH
 echo "-----> Updating environment variables"
 PROFILE_PATH="$BUILD_DIR/.profile.d/hunspell.sh"
-ACTUAL_INSTALL_PATH="$HOME/vendor/hunspell"
+# Single quotes since we want $HOME to be resolved at runtime, not build time.
+RUNTIME_INSTALL_PATH='$HOME/vendor/hunspell'
 mkdir -p $(dirname $PROFILE_PATH)
-echo "export PATH=$ACTUAL_INSTALL_PATH/bin:\$PATH" >> $PROFILE_PATH
-echo "export LD_LIBRARY_PATH=$ACTUAL_INSTALL_PATH/lib:\$LD_LIBRARY_PATH" >> $PROFILE_PATH
+echo "export PATH=$RUNTIME_INSTALL_PATH/bin:\$PATH" >> $PROFILE_PATH
+echo "export LD_LIBRARY_PATH=$RUNTIME_INSTALL_PATH/lib:\$LD_LIBRARY_PATH" >> $PROFILE_PATH
 
